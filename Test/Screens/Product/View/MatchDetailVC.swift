@@ -10,7 +10,7 @@ import UIKit
 class MatchDetailVC: UIViewController {
 
     private var viewModel = MatchDetailViewModel()
-
+    private var dataArray:[Any] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -39,7 +39,11 @@ extension MatchDetailVC {
                 print(".....Stop loading")
             case .dataLoaded:
                 print(".....Data loaded")
-                print(self.viewModel.data)
+                DispatchQueue.main.async {
+                    self.dataArray.append(self.viewModel.data)
+                    print(self.dataArray.count)
+                    print(self.viewModel.data)
+                }
             case .error(let error):
                 print(error)
             }

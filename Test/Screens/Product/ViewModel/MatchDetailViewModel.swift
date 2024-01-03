@@ -14,7 +14,7 @@ final class MatchDetailViewModel {
     var eventHandler: ((_ event: Event) -> Void)? //Data Binding Closure
     func fetchmeatchdetail(){
         self.eventHandler?(.loading)
-        APIManager.shared.fetchProducts { response in
+        DataManager.shared.fetchProducts(baseUrl: Constant.API.MatchdetailsURL) { response in
             self.eventHandler?(.stoploading)
             switch response {
             case .success(let temperatures):
@@ -24,7 +24,7 @@ final class MatchDetailViewModel {
                 self.eventHandler?(.error(error))
             }
         }
-        DataManager.shared.fetchProducts { response in
+        DataManager.shared.fetchProducts(baseUrl: Constant.API.MatchdetailURL) { response in
             self.eventHandler?(.stoploading)
             switch response {
             case .success(let temperatures):
